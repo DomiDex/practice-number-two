@@ -145,3 +145,33 @@ function fibonacciSequence(num: number): number[] {
   return sequence;
 }
 console.log(fibonacciSequence(10)); //[0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+
+//Greatest Common Divisor (GCD)
+/*
+Let me explain the greatestCommonDivisor function:
+Purpose:
+This function calculates the greatest common divisor (GCD) of two numbers.
+Function Breakdown:
+Function Signature:
+Takes two parameters a and b of type number
+Returns a number (the GCD)
+Implementation:
+Initializes a gcd variable to 1
+Uses a for loop to iterate from 1 to the smaller of a and b
+Checks if both a and b are divisible by the current number
+If so, updates gcd to the current number
+Returns the final gcd value
+Example Usage:
+For a = 12 and b = 18, the GCD is 6
+*/
+function greatestCommonDivisor(num1: number, num2: number): number {
+  let gcd: number = 1;
+
+  for (let i = 1; i <= num1 && i <= num2; i++) {
+    if (num1 % i === 0 && num2 % i === 0) {
+      gcd = i;
+    }
+  }
+  return gcd;
+}
+console.log(greatestCommonDivisor(12, 18)); //6
