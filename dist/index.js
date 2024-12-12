@@ -27,3 +27,36 @@ function evenSeven(array) {
     return result;
 }
 console.log(evenSeven([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])); //[2,4,6,8,10]
+//Odd Todd
+/*
+Let me explain the oddTodd function:
+Function Purpose:
+This function filters an array to keep only the odd numbers
+Named oddTodd (likely as a fun play on words, similar to evenSeven)
+Function Signature:
+- Takes a parameter array of type number[] (an array of numbers)
+Returns a number[] (an array of numbers)
+How it Works:
+Creates an empty array result to store odd numbers
+Uses a for loop to iterate through each element of the input array
+For each number, checks if it's odd using % 2 !== 0
+The modulo operator (%) returns the remainder after division
+If a number divided by 2 has a remainder (isn't 0), it's odd
+If a number is odd, adds it to the result array
+Finally returns the array containing only odd numbers
+4. Example Usage:
+Modern Alternative:
+The same function could be written more concisely using array methods:
+This function is essentially the opposite of the evenSeven function shown earlier in the file, filtering for odd numbers instead of even ones.*/
+function oddTodd(array) {
+    let result = [];
+    for (let i = 0; i < array.length; i++) {
+        // Changed Array.length to array.length
+        if (array[i] % 2 !== 0) {
+            result.push(array[i]);
+        }
+    }
+    return result;
+}
+console.log(oddTodd([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])); //[1,3,5,7,9]
+console.log(oddTodd([1, 3, 5, 7, 9])); //[1,3,5,7,9]
