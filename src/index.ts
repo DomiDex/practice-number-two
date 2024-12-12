@@ -16,5 +16,13 @@ Returns [2,4,6,8,10] (all even numbers from the input)
 Note: While the function is named evenSeven, it actually has nothing to do with the number 7 - it just filters for even numbers. A more appropriate name might be filterEvenNumbers or simply getEvenNumbers.
 A more modern way to write this same function would be using array methods:
 */
-
+function evenSeven(array: number[]): number[] {
+  let result: number[] = [];
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] % 2 === 0) {
+      result.push(array[i]);
+    }
+  }
+  return result;
+}
 console.log(evenSeven([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])); //[2,4,6,8,10]
