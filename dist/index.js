@@ -359,3 +359,36 @@ function primeNumberChecker(num) {
 }
 console.log(primeNumberChecker(11)); //true
 console.log(primeNumberChecker(12)); //false
+//Array Rotation
+/*
+Let me explain the arrayRotation function:
+Purpose:
+This function rotates an array to the left by a specified number of positions.
+Function Breakdown:
+Function Signature:
+Takes two parameters array and positions of type number[] and number
+Returns an array of numbers (the rotated array)
+Implementation:
+Initializes an empty array result to store the rotated array
+Uses a for loop to iterate through the input array
+Pushes each element to the result array, starting from the positions index
+Returns the final result array
+Example Usage:
+For the input [1, 2, 3, 4, 5] and positions = 2, the output is [3, 4, 5, 1, 2]
+*/
+function arrayRotation(array, positions) {
+    // Create a copy of the array to avoid modifying the original
+    let result = [...array];
+    // Normalize positions in case it's larger than array length
+    positions = positions % array.length;
+    // Perform the rotation
+    for (let i = 0; i < positions; i++) {
+        // Remove first element and add it to the end
+        const firstElement = result.shift();
+        if (firstElement !== undefined) {
+            result.push(firstElement);
+        }
+    }
+    return result;
+}
+console.log(arrayRotation([1, 2, 3, 4, 5], 2)); //[3, 4, 5, 1, 2]

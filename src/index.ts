@@ -392,4 +392,18 @@ Returns the final result array
 Example Usage:
 For the input [1, 2, 3, 4, 5] and positions = 2, the output is [3, 4, 5, 1, 2]
 */
-funct;
+function arrayRotation(array: number[], positions: number): number[] {
+  let result: number[] = [...array];
+  positions = positions % array.length;
+
+  for (let i = 0; i < positions; i++) {
+    const firstElement = result.shift();
+
+    if (firstElement !== undefined) {
+      result.push(firstElement);
+    }
+  }
+
+  return result;
+}
+console.log(arrayRotation([1, 2, 3, 4, 5], 2)); //[3, 4, 5, 1, 2]
