@@ -467,3 +467,6 @@ function diamondPattern(n: number): string {
 
 console.log(diamondPattern(3));
 console.log(diamondPattern(4));
+
+let greeting: string = 'Hello, world!';
+console.log(greeting);
