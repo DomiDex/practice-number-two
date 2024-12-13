@@ -261,21 +261,27 @@ console.log(arrayChunking([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 2)); //[[1, 2], [3, 4
 console.log(arrayChunking([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 1)); //[[1], [2], [3], [4], [5], [6], [7], [8], [9], [10]]
 //Pyramid Power
 /*
-Let me explain the pyramidPower function:
-Purpose:
-This function generates a pyramid pattern of a specified height.
+This function creates a text-based pyramid pattern where each row increases in width, creating a triangular shape using '#' characters.
 Function Breakdown:
 Function Signature:
-Takes a parameter height of type number
-Returns an array of strings (the pyramid pattern)
+Takes a parameter input of type number which determines the height of the pyramid
+Returns a string containing the pyramid pattern
 Implementation:
-Initializes an empty array result to store the pyramid rows
-Uses a for loop to iterate from 1 to height
-For each level, creates a string of '#' characters with the appropriate length
-Adds the string to the result array
-Returns the final result array
-Example Usage:
-For height = 5, the output is ["#", "##", "###", "####", "#####"]
+3. How it Works:
+Uses nested loops to build the pyramid
+Outer loop (i) controls the number of rows
+Inner loop (j) controls the number of '#' characters in each row
+Each row has i number of '#' characters
+After each row, adds a newline character
+Finally joins all characters into a single string
+4. Example Output:
+For pyramidPower(5):
+First row: 1 '#'
+Second row: 2 '#'s
+Third row: 3 '#'s
+And so on...
+This creates a left-aligned pyramid pattern where each row increases in width by one '#' character, making it look like a triangular shape when printed.
+A more modern approach could use array methods and string repetition:
 */
 function pyramidPower(input) {
     let result = [];
@@ -287,4 +293,41 @@ function pyramidPower(input) {
     }
     return result.join('');
 }
-console.log(pyramidPower(5));
+console.log(pyramidPower(5)); //"#
+//##
+//###
+//####
+//#####"
+//Pascal's Triangle:
+/*
+Let me explain the pascalTriangle function:
+Purpose:
+This function generates Pascal's Triangle up to a specified number of rows.
+Function Breakdown:
+Function Signature:
+Takes a parameter numRows of type number
+Returns an array of arrays (each containing a row of Pascal's Triangle)
+Implementation:
+Initializes an empty array result to store the triangle rows
+Uses nested loops to calculate each row of Pascal's Triangle
+Each row is calculated based on the previous row
+Adds each row to the result array
+Returns the final result array
+Example Usage:
+For numRows = 5, the output is [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1]]
+*/
+function pascalTriangle(numRows) {
+    let result = [];
+    for (let index = 0; index < numRows; index++) {
+        const currentRow = [];
+        const prevRow = result[index - 1];
+        currentRow.push(1);
+        for (let secondIndex = 0; secondIndex < index; secondIndex++) {
+            currentRow.push(prevRow[secondIndex] + prevRow[secondIndex + 1]);
+        }
+        currentRow.push(1);
+        result.push(currentRow);
+    }
+    return result;
+}
+console.log(pascalTriangle(5)); //[[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1]]

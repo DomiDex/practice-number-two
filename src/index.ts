@@ -329,3 +329,18 @@ Returns the final result array
 Example Usage:
 For numRows = 5, the output is [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1]]
 */
+function pascalTriangle(numRows: number) {
+  let result: number[][] = [];
+  for (let index = 0; index < numRows; index++) {
+    const currentRow: number[] = [];
+    const prevRow = result[index - 1];
+    currentRow.push(1);
+    for (let secondIndex = 0; secondIndex < index; secondIndex++) {
+      currentRow.push(prevRow[secondIndex] + prevRow[secondIndex + 1]);
+    }
+    currentRow.push(1);
+    result.push(currentRow);
+  }
+  return result;
+}
+console.log(pascalTriangle(5)); //[[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1]]
