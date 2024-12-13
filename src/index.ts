@@ -407,3 +407,63 @@ function arrayRotation(array: number[], positions: number): number[] {
   return result;
 }
 console.log(arrayRotation([1, 2, 3, 4, 5], 2)); //[3, 4, 5, 1, 2]
+//Pattern Printing
+/*
+This function:
+Takes a number n as input which determines the size of the diamond
+Uses nested loops to create both the upper and lower halves of the diamond
+For each row:
+First loop adds the required spaces
+Second loop adds the stars
+The pattern is built by:
+Increasing stars from 1 to 2n-1 for upper half
+Decreasing stars from 2(n-1)-1 to 1 for lower half
+Returns the complete pattern as a string
+Example output for diamondPattern(3):
+  *
+ ***
+*****
+ ***
+  *
+Example output for diamondPattern(4):
+   *
+  ***
+ *****
+*******
+ *****
+  ***
+   *
+
+The function uses a similar approach to the pyramid pattern shown in the reference code (lines 299-308), but extends it to create both ascending and descending parts of the diamond.
+*/
+
+function diamondPattern(n: number): string {
+  let result: string[] = [];
+
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < n - i - 1; j++) {
+      result.push(' ');
+    }
+
+    for (let k = 0; k < 2 * i + 1; k++) {
+      result.push('*');
+    }
+    result.push('\n');
+  }
+
+  for (let i = n - 2; i >= 0; i--) {
+    for (let j = 0; j < n - i - 1; j++) {
+      result.push(' ');
+    }
+
+    for (let k = 0; k < 2 * i + 1; k++) {
+      result.push('*');
+    }
+    result.push('\n');
+  }
+
+  return result.join('');
+}
+
+console.log(diamondPattern(3));
+console.log(diamondPattern(4));
