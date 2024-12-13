@@ -270,3 +270,62 @@ function arrayChunking(array: number[], size: number) {
 console.log(arrayChunking([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3)); //[[1, 2, 3], [4, 5, 6], [7, 8, 9], [10]]
 console.log(arrayChunking([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 2)); //[[1, 2], [3, 4], [5, 6], [7, 8], [9, 10]]
 console.log(arrayChunking([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 1)); //[[1], [2], [3], [4], [5], [6], [7], [8], [9], [10]]
+
+//Pyramid Power
+/*
+This function creates a text-based pyramid pattern where each row increases in width, creating a triangular shape using '#' characters.
+Function Breakdown:
+Function Signature:
+Takes a parameter input of type number which determines the height of the pyramid
+Returns a string containing the pyramid pattern
+Implementation:
+3. How it Works:
+Uses nested loops to build the pyramid
+Outer loop (i) controls the number of rows
+Inner loop (j) controls the number of '#' characters in each row
+Each row has i number of '#' characters
+After each row, adds a newline character
+Finally joins all characters into a single string
+4. Example Output:
+For pyramidPower(5):
+First row: 1 '#'
+Second row: 2 '#'s
+Third row: 3 '#'s
+And so on...
+This creates a left-aligned pyramid pattern where each row increases in width by one '#' character, making it look like a triangular shape when printed.
+A more modern approach could use array methods and string repetition:
+*/
+
+function pyramidPower(input: number) {
+  let result: string[] = [];
+  for (let i = 1; i <= input; i++) {
+    for (let j = 1; j <= i; j++) {
+      result.push('#');
+    }
+    result.push('\n');
+  }
+  return result.join('');
+}
+console.log(pyramidPower(5)); //"#
+//##
+//###
+//####
+//#####"
+//Pascal's Triangle:
+/*
+Let me explain the pascalTriangle function:
+Purpose:
+This function generates Pascal's Triangle up to a specified number of rows.
+Function Breakdown:
+Function Signature:
+Takes a parameter numRows of type number
+Returns an array of arrays (each containing a row of Pascal's Triangle)
+Implementation:
+Initializes an empty array result to store the triangle rows
+Uses nested loops to calculate each row of Pascal's Triangle
+Each row is calculated based on the previous row
+Adds each row to the result array
+Returns the final result array
+Example Usage:
+For numRows = 5, the output is [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1]]
+*/

@@ -259,3 +259,32 @@ function arrayChunking(array, size) {
 console.log(arrayChunking([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3)); //[[1, 2, 3], [4, 5, 6], [7, 8, 9], [10]]
 console.log(arrayChunking([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 2)); //[[1, 2], [3, 4], [5, 6], [7, 8], [9, 10]]
 console.log(arrayChunking([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 1)); //[[1], [2], [3], [4], [5], [6], [7], [8], [9], [10]]
+//Pyramid Power
+/*
+Let me explain the pyramidPower function:
+Purpose:
+This function generates a pyramid pattern of a specified height.
+Function Breakdown:
+Function Signature:
+Takes a parameter height of type number
+Returns an array of strings (the pyramid pattern)
+Implementation:
+Initializes an empty array result to store the pyramid rows
+Uses a for loop to iterate from 1 to height
+For each level, creates a string of '#' characters with the appropriate length
+Adds the string to the result array
+Returns the final result array
+Example Usage:
+For height = 5, the output is ["#", "##", "###", "####", "#####"]
+*/
+function pyramidPower(input) {
+    let result = [];
+    for (let i = 1; i <= input; i++) {
+        for (let j = 1; j <= i; j++) {
+            result.push('#');
+        }
+        result.push('\n');
+    }
+    return result.join('');
+}
+console.log(pyramidPower(5));
