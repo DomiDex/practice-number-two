@@ -331,3 +331,31 @@ function pascalTriangle(numRows) {
     return result;
 }
 console.log(pascalTriangle(5)); //[[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1]]
+//prime Number Checker
+/*
+Let me explain the primeNumberChecker function:
+Purpose:
+This function checks if a given number is prime.
+Function Breakdown:
+Function Signature:
+Takes a parameter num of type number
+Returns a boolean (true if prime, false otherwise)
+Implementation:
+Initializes a boolean result to true
+Uses a for loop to iterate from 2 to the square root of num
+Checks if num is divisible by any number in the loop
+If divisible, sets result to false and breaks the loop
+Returns the final result
+Example Usage:
+For num = 11, the output is true (11 is a prime number)
+*/
+function primeNumberChecker(num) {
+    for (let i = 2; i < num; i++) {
+        if (num % i === 0) {
+            return false;
+        }
+    }
+    return true;
+}
+console.log(primeNumberChecker(11)); //true
+console.log(primeNumberChecker(12)); //false
