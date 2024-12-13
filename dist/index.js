@@ -460,15 +460,19 @@ Example Usage:
 For matrix1 = [[1, 2], [3, 4]] and matrix2 = [[5, 6], [7, 8]], the output is [[19, 22], [43, 50]]
 */
 function matrixMultiplication(matrix1, matrix2) {
-    let result = [];
+    // First, initialize the result matrix with zeros
+    const result = Array(matrix1.length)
+        .fill(0)
+        .map(() => Array(matrix2[0].length).fill(0));
+    // Perform matrix multiplication
     for (let i = 0; i < matrix1.length; i++) {
         for (let j = 0; j < matrix2[0].length; j++) {
-            result[i][j] = 0;
             for (let k = 0; k < matrix1[0].length; k++) {
                 result[i][j] += matrix1[i][k] * matrix2[k][j];
             }
         }
     }
+    return result;
 }
 console.log(matrixMultiplication([
     [1, 2],
@@ -477,3 +481,34 @@ console.log(matrixMultiplication([
     [5, 6],
     [7, 8],
 ])); //[[19, 22], [43, 50]]
+//Sorting Algorithms
+/*
+Let me explain the bubbleSort function:
+Purpose:
+This function sorts an array using the bubble sort algorithm.
+Function Breakdown:
+Function Signature:
+Takes a parameter array of type number[]
+Returns a number[] (the sorted array)
+Implementation:
+Uses nested loops to compare and swap elements
+Swaps elements if they are in the wrong order
+Continues swapping until the array is sorted
+Returns the final sorted array
+Example Usage:
+For the input [64, 34, 25, 12, 22, 11, 90], the output is [11, 12, 22, 25, 34, 64, 90]
+*/
+function bubbleSort(array) {
+    let n = array.length;
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < n - i - 1; j++) {
+            if (array[j] > array[j + 1]) {
+                let temp = array[j];
+                array[j] = array[j + 1];
+                array[j + 1] = temp;
+            }
+        }
+    }
+    return array;
+}
+console.log(bubbleSort([64, 34, 25, 12, 22, 11, 90])); //[11, 12, 22, 25, 34, 64, 90]
