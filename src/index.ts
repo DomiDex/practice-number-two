@@ -491,12 +491,10 @@ function matrixMultiplication(
   matrix1: number[][],
   matrix2: number[][]
 ): number[][] {
-  // First, initialize the result matrix with zeros
   const result: number[][] = Array(matrix1.length)
     .fill(0)
     .map(() => Array(matrix2[0].length).fill(0));
 
-  // Perform matrix multiplication
   for (let i = 0; i < matrix1.length; i++) {
     for (let j = 0; j < matrix2[0].length; j++) {
       for (let k = 0; k < matrix1[0].length; k++) {
@@ -551,3 +549,33 @@ function bubbleSort(array: number[]): number[] {
   return array;
 }
 console.log(bubbleSort([64, 34, 25, 12, 22, 11, 90])); //[11, 12, 22, 25, 34, 64, 90]
+
+//Binary Search
+/*
+Let me explain the binarySearch function:
+Purpose:
+This function searches for a target value in a sorted array using the binary search algorithm.
+Function Breakdown:
+Function Signature:
+Takes two parameters array and target of type number[] and number
+Returns a number (the index of the target value)
+Implementation:
+Uses a while loop to repeatedly divide the search interval in half
+Compares the target with the middle element of the current interval
+Adjusts the search interval based on whether the target is less than or greater than the middle element
+Continues until the target is found or the interval is empty
+Returns the index of the target value or -1 if not found
+Example Usage:
+For the input [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] and target = 7, the output is 6
+*/
+function binarySearch(array: number[], target: number): number {
+  let left = 0;
+  let right = array.length - 1;
+  while (left <= right) {
+    let mid = Math.floor((left + right) / 2);
+    if (array[mid] === target) {
+      return mid;
+    }
+  }
+}
+console.log(binarySearch([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 7)); //6
