@@ -571,11 +571,78 @@ For the input [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] and target = 7, the output is 6
 function binarySearch(array: number[], target: number): number {
   let left = 0;
   let right = array.length - 1;
+
   while (left <= right) {
-    let mid = Math.floor((left + right) / 2);
+    const mid = Math.floor((left + right) / 2);
+
     if (array[mid] === target) {
       return mid;
     }
+
+    if (array[mid] < target) {
+      left = mid + 1;
+    } else {
+      right = mid - 1;
+    }
   }
+
+  return -1;
 }
 console.log(binarySearch([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 7)); //6
+//Longest Common Subsequence
+/*
+Let me explain the longestCommonSubsequence function:
+Purpose:
+This function finds the longest common subsequence between two strings. 
+Function Breakdown:
+Function Signature:
+Takes two parameters str1 and str2 of type string
+Returns a string (the longest common subsequence)
+Implementation:
+Uses nested loops to compare characters of both strings
+Builds the longest common subsequence by comparing characters
+Returns the final result string
+Example Usage:
+For str1 = "abcde" and str2 = "ace", the output is "ace"
+*/
+function longestCommonSubsequence(str1: string, str2: string): string {
+  const m = str1.length;
+  const n = str2.length;
+
+  // Create a matrix to store lengths of LCS
+  const dp: number[][] = Array(m + 1)
+    .fill(0)
+    .map(() => Array(n + 1).fill(0));
+
+  // Fill dp table
+  for (let i = 1; i <= m; i++) {
+    for (let j = 1; j <= n; j++) {
+      if (str1[i - 1] === str2[j - 1]) {
+        dp[i][j] = dp[i - 1][j - 1] + 1;
+      } else {
+        dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+      }
+    }
+  }
+
+  // Reconstruct the LCS
+  let lcs = '';
+  let i = m,
+    j = n;
+  while (i > 0 && j > 0) {
+    if (str1[i - 1] === str2[j - 1]) {
+      lcs = str1[i - 1] + lcs;
+      i--;
+      j--;
+    } else if (dp[i - 1][j] > dp[i][j - 1]) {
+      i--;
+    } else {
+      j--;
+    }
+  }
+
+  return lcs; // Always returns a string (empty string if no common subsequence)
+}
+console.log(longestCommonSubsequence('abcde', 'ace')); // 'ace'
+console.log(longestCommonSubsequence('abc', 'def')); // ''
+console.log(longestCommonSubsequence('AGGTAB', 'GXTXAYB')); // 'GTAB'
