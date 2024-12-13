@@ -241,3 +241,32 @@ function characterFrequency(str: string): { key: string; value: number }[] {
 console.log(characterFrequency('Hello')); //[{key: "h", value: 1}, {key: "e", value: 1}, {key: "l", value: 2}, {key: "o", value: 1}]
 console.log(characterFrequency('Hello World')); //[{key: "h", value: 1}, {key: "e", value: 1}, {key: "l", value: 2}, {key: "o", value: 1}, {key: "w", value: 1}, {key: "r", value: 1}, {key: "d", value: 1}]
 console.log(characterFrequency('TypeScript')); //[{key: "t", value: 1}, {key: "y", value: 1}, {key: "p", value: 1}, {key: "e", value: 1}, {key: "s", value: 1}, {key: "c", value: 1}, {key: "r", value: 1}, {key: "i", value: 1}, {key: "p", value: 1}, {key: "t", value: 1}]
+
+//Array Chunking
+/*
+Let me explain the arrayChunking function:
+Purpose:
+This function splits an array into smaller arrays of a specified size.
+Function Breakdown:
+Function Signature:
+Takes two parameters array and size of type number[] and number
+Returns an array of arrays (the chunks)
+Implementation:
+Initializes an empty array result to store the chunks
+Uses a for loop to iterate through the input array in steps of size
+Pushes each chunk (sub-array) into the result array
+Returns the final result array
+Example Usage:
+For the input [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] and size = 3, the output is [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10]]
+*/
+
+function arrayChunking(array: number[], size: number) {
+  let result: number[][] = [];
+  for (let i = 0; i < array.length; i += size) {
+    result.push(array.slice(i, i + size));
+  }
+  return result;
+}
+console.log(arrayChunking([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3)); //[[1, 2, 3], [4, 5, 6], [7, 8, 9], [10]]
+console.log(arrayChunking([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 2)); //[[1, 2], [3, 4], [5, 6], [7, 8], [9, 10]]
+console.log(arrayChunking([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 1)); //[[1], [2], [3], [4], [5], [6], [7], [8], [9], [10]]
