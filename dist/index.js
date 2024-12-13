@@ -441,3 +441,39 @@ function diamondPattern(n) {
 }
 console.log(diamondPattern(3));
 console.log(diamondPattern(4));
+//Matrix Multiplication
+/*
+Let me explain the matrixMultiplication function:
+Purpose:
+This function multiplies two matrices.
+Function Breakdown:
+Function Signature:
+Takes two parameters matrix1 and matrix2 of type number[][]
+Returns a number[][] (the product of the matrices)
+Implementation:
+Initializes an empty array result to store the product
+Uses nested loops to calculate each element of the product
+Multiplies corresponding elements from matrix1 and matrix2
+Adds the result to the result array
+Returns the final result array
+Example Usage:
+For matrix1 = [[1, 2], [3, 4]] and matrix2 = [[5, 6], [7, 8]], the output is [[19, 22], [43, 50]]
+*/
+function matrixMultiplication(matrix1, matrix2) {
+    let result = [];
+    for (let i = 0; i < matrix1.length; i++) {
+        for (let j = 0; j < matrix2[0].length; j++) {
+            result[i][j] = 0;
+            for (let k = 0; k < matrix1[0].length; k++) {
+                result[i][j] += matrix1[i][k] * matrix2[k][j];
+            }
+        }
+    }
+}
+console.log(matrixMultiplication([
+    [1, 2],
+    [3, 4],
+], [
+    [5, 6],
+    [7, 8],
+])); //[[19, 22], [43, 50]]
