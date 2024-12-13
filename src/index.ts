@@ -175,3 +175,69 @@ function greatestCommonDivisor(num1: number, num2: number): number {
   return gcd;
 }
 console.log(greatestCommonDivisor(12, 18)); //6
+
+//Remove Duplicates
+/*
+Let me explain the RemoveDuplicates function:
+Purpose:
+This function removes duplicate elements from an array.
+Function Breakdown:
+Function Signature:
+Takes a parameter array of type number[] (an array of numbers)
+Returns an array of numbers (the unique elements)
+Implementation:
+Initializes an empty array result to store unique elements
+Uses a for loop to iterate through each element of the input array
+Checks if the current element is not already in the result array
+If not, adds it to the result array
+Returns the final result array
+Example Usage:
+For the input [1, 2, 2, 3, 4, 4, 5], the output is [1, 2, 3, 4, 5]
+*/
+function RemoveDuplicates(array: number[]): number[] {
+  let result: number[] = [];
+  for (let i = 0; i < array.length; i++) {
+    if (!result.includes(array[i])) {
+      result.push(array[i]);
+    }
+  }
+  return result;
+}
+console.log(RemoveDuplicates([1, 2, 2, 3, 4, 4, 5])); //[1,2,3,4,5]
+
+//Character Frequency
+/*
+Let me explain the characterFrequency function:
+Purpose:
+This function calculates the frequency of each character in a string.
+Function Breakdown:
+Function Signature:
+Takes a parameter str of type string
+Returns an array of objects (each containing a character and its frequency)
+Implementation:
+Initializes an empty array result to store the frequency data
+Uses a for loop to iterate through each character in the input string
+Checks if the current character is already in the result array
+If so, increments the frequency count
+If not, adds a new entry to the result array with a frequency of 1
+Returns the final result array
+Example Usage:
+For the input "hello", the output is [{key: "h", value: 1}, {key: "e", value: 1}, {key: "l", value: 2}, {key: "o", value: 1}]
+*/
+
+function characterFrequency(str: string): { key: string; value: number }[] {
+  let result: { key: string; value: number }[] = [];
+  for (let i = 0; i < str.length; i++) {
+    const char = str[i];
+    const existingChar = result.find((item) => item.key === char);
+    if (existingChar) {
+      existingChar.value++;
+    } else {
+      result.push({ key: char, value: 1 });
+    }
+  }
+  return result;
+}
+console.log(characterFrequency('Hello')); //[{key: "h", value: 1}, {key: "e", value: 1}, {key: "l", value: 2}, {key: "o", value: 1}]
+console.log(characterFrequency('Hello World')); //[{key: "h", value: 1}, {key: "e", value: 1}, {key: "l", value: 2}, {key: "o", value: 1}, {key: "w", value: 1}, {key: "r", value: 1}, {key: "d", value: 1}]
+console.log(characterFrequency('TypeScript')); //[{key: "t", value: 1}, {key: "y", value: 1}, {key: "p", value: 1}, {key: "e", value: 1}, {key: "s", value: 1}, {key: "c", value: 1}, {key: "r", value: 1}, {key: "i", value: 1}, {key: "p", value: 1}, {key: "t", value: 1}]
