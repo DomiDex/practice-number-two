@@ -601,3 +601,91 @@ function longestCommonSubsequence(str1, str2) {
 console.log(longestCommonSubsequence('abcde', 'ace')); // 'ace'
 console.log(longestCommonSubsequence('abc', 'def')); // ''
 console.log(longestCommonSubsequence('AGGTAB', 'GXTXAYB')); // 'GTAB'
+//Sudoku Solver
+/**
+ * Solves a Sudoku puzzle using backtracking algorithm.
+ * @param board - 9x9 2D array representing the Sudoku board (0 represents empty cells)
+ * @returns boolean - true if solution is found, false otherwise
+ */
+function solveSudoku(board) {
+    const EMPTY_CELL = 0;
+    const GRID_SIZE = 9;
+    // Find empty cell
+    function findEmptyCell() {
+        for (let row = 0; row < GRID_SIZE; row++) {
+            for (let col = 0; col < GRID_SIZE; col++) {
+                if (board[row][col] === EMPTY_CELL) {
+                    return [row, col];
+                }
+            }
+        }
+        return null;
+    }
+    // Check if number is valid in current position
+    function isValid(num, pos) {
+        const [row, col] = pos;
+        // Check row
+        for (let x = 0; x < GRID_SIZE; x++) {
+            if (board[row][x] === num && x !== col) {
+                return false;
+            }
+        }
+        // Check column
+        for (let x = 0; x < GRID_SIZE; x++) {
+            if (board[x][col] === num && x !== row) {
+                return false;
+            }
+        }
+        // Check 3x3 box
+        const boxRow = Math.floor(row / 3) * 3;
+        const boxCol = Math.floor(col / 3) * 3;
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+                if (board[boxRow + i][boxCol + j] === num &&
+                    boxRow + i !== row &&
+                    boxCol + j !== col) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    // Main solving logic using backtracking
+    const emptyCell = findEmptyCell();
+    // If no empty cell is found, puzzle is solved
+    if (!emptyCell) {
+        return true;
+    }
+    const [row, col] = emptyCell;
+    // Try digits 1-9
+    for (let num = 1; num <= 9; num++) {
+        if (isValid(num, [row, col])) {
+            board[row][col] = num;
+            if (solveSudoku(board)) {
+                return true;
+            }
+            // If solution not found, backtrack
+            board[row][col] = EMPTY_CELL;
+        }
+    }
+    return false;
+}
+// Example usage:
+const sudokuBoard = [
+    [5, 3, 0, 0, 7, 0, 0, 0, 0],
+    [6, 0, 0, 1, 9, 5, 0, 0, 0],
+    [0, 9, 8, 0, 0, 0, 0, 6, 0],
+    [8, 0, 0, 0, 6, 0, 0, 0, 3],
+    [4, 0, 0, 8, 0, 3, 0, 0, 1],
+    [7, 0, 0, 0, 2, 0, 0, 0, 6],
+    [0, 6, 0, 0, 0, 0, 2, 8, 0],
+    [0, 0, 0, 4, 1, 9, 0, 0, 5],
+    [0, 0, 0, 0, 8, 0, 0, 7, 9],
+];
+if (solveSudoku(sudokuBoard)) {
+    console.log('Solved Sudoku:');
+    console.log(sudokuBoard);
+}
+else {
+    console.log('No solution exists');
+}
